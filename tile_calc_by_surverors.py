@@ -8,6 +8,7 @@ for x in range(1, 11):
     n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
     if surveyors_cost == n:
         surveyors_times = x
+        break
 
     if surveyors_cost < n:
         print(f'Maybe Not Right Surveyors Cost Value ({surveyors_cost})')
