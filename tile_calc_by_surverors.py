@@ -1,6 +1,6 @@
 
 base_tile_cost = float(input('tile cost? (M) '))
-surveyors_cost = int(input('syrveyors cost? (M) '))
+surveyors_cost = int(input('surveyors cost? (M) '))
 russia_empire = input('russia empire? [y/n] ')
 
 surveyors_times = None
@@ -13,4 +13,3 @@ for x in range(1, 11):
         print(f'Maybe Not Right Surveyors Cost Value ({surveyors_cost})')
         exit()
 
-print(surveyors_times)
