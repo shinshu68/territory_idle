@@ -11,6 +11,8 @@ with open(f'{HOME}/workspace/terrirory_idle/data.json') as f:
 base_tile_cost = data['tile_cost']
 surveyors_cost = data['surveyors_cost']
 russia_empire = data['russia_empire']
+tile_max = data['tile_max']
+surveyors_max = data['surveyors_max']
 
 # タイルのコスト倍率を数値で保存
 tile_cost_ratio = 9 if russia_empire else 10
@@ -28,8 +30,8 @@ for x in range(1, 11):
         exit()
 
 # 配列の大きさ指定
-r = 11
-c = 9 
+r = surveyors_max + 1
+c = tile_max + 1
 a = np.zeros((r, c))
 
 # surveyorが0回の時を計算
