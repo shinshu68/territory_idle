@@ -2,6 +2,13 @@ import numpy as np
 import json
 import os
 
+
+def green(txt):
+    GREEN = '\033[32m'
+    END = '\033[0m'
+    return GREEN + txt + END
+
+
 HOME = os.getenv('HOME')
 
 with open(f'{HOME}/workspace/terrirory_idle/data.json') as f:
@@ -47,18 +54,31 @@ for i in range(1, r):
         a[i][j] = n + sum(base_tile_cost * (tile_cost_ratio**x) / cost_cut for x in range(0, j))
 
 
-axis_row = ['Tile →', 0, 1, 2, 3, 4, 5, 6, 7, 8]
+axis_row = ['↓ S \\ T →'] + list(range(0, c))
 for i in axis_row:
     print(f'{i:^9}', end='')
 
 print()
-print('Surveyor ↓')
-for i, li in enumerate(a):
-    print(f'{i:>9}', end='')
-    for x in li:
-        if x > 1e6:
+for i in range(r):
+    print(f'{i:<9}', end='')
+    for j in range(c):
+        if a[i][j] > 1e6:
             break
-        print(f'{x:>8.1f} ', end='')
+        if i == 0:
+            if a[i + 1][j] > a[i][j]:
+                print(green(f'{a[i][j]:>8.1f} '), end='')
+            else:
+                print(f'{a[i][j]:>8.1f} ', end='')
+        elif i == r - 1:
+            if a[i - 1][j] > a[i][j]:
+                print(green(f'{a[i][j]:>8.1f} '), end='')
+            else:
+                print(f'{a[i][j]:>8.1f} ', end='')
+        else:
+            if a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]:
+                print(green(f'{a[i][j]:>8.1f} '), end='')
+            else:
+                print(f'{a[i][j]:>8.1f} ', end='')
     print()
 
 # print(a)
