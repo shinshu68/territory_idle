@@ -10,8 +10,7 @@ def green(txt):
 
 
 HOME = os.getenv('HOME')
-
-with open(f'{HOME}/workspace/terrirory_idle/data.toml') as f:
+with open(f'{HOME}/workspace/terrirory_idle/tile_calc_by_surverors/data.toml') as f:
     data = toml.load(f)
 
 # 各種データ
