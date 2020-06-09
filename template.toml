@@ -1,0 +1,11 @@
+[cost]
+tile=1
+surveyors=1
+
+[empire]
+russia=true
+
+[max]
+tile=10
+surveyors=10
+
