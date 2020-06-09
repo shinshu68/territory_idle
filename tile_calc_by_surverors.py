@@ -64,21 +64,13 @@ for i in range(r):
     for j in range(c):
         if a[i][j] > 1e6:
             break
-        if i == 0:
-            if a[i + 1][j] > a[i][j]:
-                print(green(f'{a[i][j]:>8.1f} '), end='')
-            else:
-                print(f'{a[i][j]:>8.1f} ', end='')
-        elif i == r - 1:
-            if a[i - 1][j] > a[i][j]:
-                print(green(f'{a[i][j]:>8.1f} '), end='')
-            else:
-                print(f'{a[i][j]:>8.1f} ', end='')
+
+        if (i == 0 and a[i + 1][j] > a[i][j]) or \
+           (i == r - 1 and a[i - 1][j] > a[i][j]) or \
+           (a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]):
+            print(green(f'{a[i][j]:>8.1f} '), end='')
         else:
-            if a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]:
-                print(green(f'{a[i][j]:>8.1f} '), end='')
-            else:
-                print(f'{a[i][j]:>8.1f} ', end='')
+            print(f'{a[i][j]:>8.1f} ', end='')
     print()
 
 # print(a)
