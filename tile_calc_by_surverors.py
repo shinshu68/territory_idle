@@ -1,6 +1,6 @@
 import numpy as np
-import json
 import os
+import toml
 
 
 def green(txt):
@@ -11,15 +11,15 @@ def green(txt):
 
 HOME = os.getenv('HOME')
 
-with open(f'{HOME}/workspace/terrirory_idle/data.json') as f:
-    data = json.load(f)
+with open(f'{HOME}/workspace/terrirory_idle/data.toml') as f:
+    data = toml.load(f)
 
 # 各種データ
-base_tile_cost = data['tile_cost']
-surveyors_cost = data['surveyors_cost']
-russia_empire = data['russia_empire']
-tile_max = data['tile_max']
-surveyors_max = data['surveyors_max']
+base_tile_cost = data['cost']['tile']
+surveyors_cost = data['cost']['surveyors']
+russia_empire = data['empire']['russia']
+tile_max = data['max']['tile']
+surveyors_max = data['max']['surveyors']
 
 # タイルのコスト倍率を数値で保存
 tile_cost_ratio = 9 if russia_empire else 10
