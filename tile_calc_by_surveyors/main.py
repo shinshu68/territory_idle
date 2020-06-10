@@ -25,7 +25,7 @@ tile_cost_ratio = 9 if russia_empire else 10
 
 # surveyorsの回数を計算
 surveyors_times = None
-for x in range(1, 11):
+for x in range(1, 101):
     n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
     if surveyors_cost == n:
         surveyors_times = x
@@ -65,7 +65,7 @@ print()
 for i in range(r):
     print(f'{i:<9}', end='')
     for j in range(c):
-        # 表示桁数が多いものは表示しない
+        # 桁数が多いものは表示しない
         if a[i][j] > 1e6:
             break
 
@@ -78,4 +78,3 @@ for i in range(r):
             print(f'{a[i][j]:>8.1f} ', end='')
     print()
 
-# print(a)
