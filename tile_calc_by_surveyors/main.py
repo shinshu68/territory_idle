@@ -11,7 +11,7 @@ def green(txt):
 
 # 各種データ
 HOME = os.getenv('HOME')
-with open(f'{HOME}/workspace/territory_idle/tile_calc_by_surverors/data.toml') as f:
+with open(f'{HOME}/workspace/territory_idle/tile_calc_by_surveyors/data.toml') as f:
     data = toml.load(f)
 
 base_tile_cost = data['cost']['tile']
