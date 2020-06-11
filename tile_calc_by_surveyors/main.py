@@ -33,6 +33,9 @@ for x in range(1, 101):
 
     if surveyors_cost < n:
         print(f'Maybe Not Right Surveyors Cost Value ({surveyors_cost})')
+        a = x - 1
+        n2 = (a**2 - 2 * a + 2) * (2**((a - 1) // 10))
+        print(f'Maybe {n} or {n2}')
         exit()
 
 # 配列の大きさ指定
