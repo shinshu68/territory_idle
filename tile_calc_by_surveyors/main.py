@@ -73,7 +73,7 @@ print()
 # 各コストを表示
 for i in range(r):
     print(f'{i:<3}', end='')
-    x = surveyors_times + i
+    x = surveyors_times + i - 1
     n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
     if n < 1e6:
         print(f'{n:>7} ', end='')
