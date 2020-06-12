@@ -62,14 +62,23 @@ for i in range(1, r):
 
 
 # タイル枚数の見出し表示
-axis_row = ['↓ S \\ T →'] + list(range(0, c))
-for i in axis_row:
-    print(f'{i:^9}', end='')
+axis_row = ['↓ S \\ T →'] + list(range(c))
+for i in range(c + 1):
+    if i == 0:
+        print(f'{axis_row[i]:^11}', end='')
+    else:
+        print(f'{i:^9}', end='')
 print()
 
 # 各コストを表示
 for i in range(r):
-    print(f'{i:<9}', end='')
+    print(f'{i:<3}', end='')
+    x = surveyors_times + i
+    n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
+    if n < 1e6:
+        print(f'{n:>7} ', end='')
+    else:
+        print('        ', end='')
     for j in range(c):
         # 桁数が多いものは表示しない
         if a[i][j] > 1e6:
