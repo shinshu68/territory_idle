@@ -38,6 +38,10 @@ for x in range(1, 101):
         print(f'Maybe {n} or {n2}')
         exit()
 
+if surveyors_times is None:
+    print('Surveyors over 100 times')
+    exit()
+
 # 配列の大きさ指定
 r = surveyors_max + 1
 c = tile_max + 1
