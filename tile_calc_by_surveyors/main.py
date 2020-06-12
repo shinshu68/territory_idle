@@ -25,22 +25,21 @@ tile_cost_ratio = 9 if russia_empire else 10
 
 # surveyorsの回数を計算
 surveyors_times = None
-for x in range(1, 101):
-    n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
+i = 1
+while True:
+    n = (i**2 - 2 * i + 2) * (2**((i - 1) // 10))
     if surveyors_cost == n:
-        surveyors_times = x
+        surveyors_times = i
         break
 
     if surveyors_cost < n:
         print(f'Maybe Not Right Surveyors Cost Value ({surveyors_cost})')
-        a = x - 1
+        a = i - 1
         n2 = (a**2 - 2 * a + 2) * (2**((a - 1) // 10))
         print(f'Maybe {n} or {n2}')
         exit()
 
-if surveyors_times is None:
-    print('Surveyors over 100 times')
-    exit()
+    i += 1
 
 # 配列の大きさ指定
 r = surveyors_max + 1
