@@ -62,12 +62,12 @@ for i in range(1, r):
 
 
 # タイル枚数の見出し表示
-axis_row = ['↓ S \\ T →'] + list(range(c))
+axis_row = ['↓ S \\ T →'] + list(range(0, c))
 for i in range(c + 1):
     if i == 0:
         print(f'{axis_row[i]:^11}', end='')
     else:
-        print(f'{i:^9}', end='')
+        print(f'{axis_row[i]:^9}', end='')
 print()
 
 # 各コストを表示
