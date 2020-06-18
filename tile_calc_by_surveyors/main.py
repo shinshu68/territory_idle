@@ -80,7 +80,7 @@ for i in range(r):
     elif n < 1e6:
         print(f'{n:>7} ', end='')
     else:
-        print('        ', end='')
+        print(f'{" ":>7} ', end='')
 
     # タイルのコストとSurveyorsのコストの合計
     for j in range(c):
