@@ -9,6 +9,7 @@ def green(txt):
     return GREEN + txt + END
 
 
+_, lines = os.get_terminal_size()
 # 各種データ
 HOME = os.getenv('HOME')
 with open(f'{HOME}/workspace/territory_idle/tile_calc_by_surveyors/data.toml') as f:
@@ -18,7 +19,9 @@ base_tile_cost = data['cost']['tile']
 surveyors_cost = data['cost']['surveyors']
 russia_empire = data['empire']['russia']
 tile_max = data['max']['tile']
-surveyors_max = data['max']['surveyors']
+
+# 見出しの行と0の行とコマンドラインの行の分を引く
+surveyors_max = max(data['max']['surveyors'], lines - 3)
 
 # タイルのコスト倍率を数値で保存
 tile_cost_ratio = 9 if russia_empire else 10
