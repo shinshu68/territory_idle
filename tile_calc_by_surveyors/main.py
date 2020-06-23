@@ -95,8 +95,8 @@ for i in range(r):
         if (i == 0 and a[i + 1][j] > a[i][j]) or \
            (i == r - 1 and a[i - 1][j] > a[i][j]) or \
            (a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]):
-            print(green(f'{a[i][j]:>8.1f} '), end='')
+            print(green(f'{a[i][j]:>8.1f}') + ' ', end='')
         else:
-            print(f'{a[i][j]:>8.1f} ', end='')
+            print(f'{a[i][j]:>8.1f}' + ' ', end='')
     print()
 
