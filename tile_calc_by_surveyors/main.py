@@ -20,9 +20,6 @@ surveyors_cost = data['cost']['surveyors']
 russia_empire = data['empire']['russia']
 tile_max = data['max']['tile']
 
-# 見出しの行と0の行とコマンドラインの行の分を引く
-surveyors_max = max(data['max']['surveyors'], lines - 3)
-
 # タイルのコスト倍率を数値で保存
 tile_cost_ratio = 9 if russia_empire else 10
 
@@ -45,7 +42,6 @@ while True:
     i += 1
 
 # 配列の大きさ指定
-r = surveyors_max + 1
 c = tile_max + 1
 a = np.zeros(c)
 best_costs = np.full(c, 1e9)
@@ -110,10 +106,7 @@ for i in range(len(a)):
            (i == len(a) - 1 and a[i - 1][j] > a[i][j]) or \
            (a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]):
             print(green(f'{a[i][j]:>8.1f}') + ' ', end='')
-            # best_costs[j] = a[i][j]
         else:
             print(f'{a[i][j]:>8.1f}' + ' ', end='')
     print()
 
-for i in range(c):
-    print(best_costs[i])
