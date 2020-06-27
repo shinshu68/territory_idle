@@ -9,6 +9,12 @@ def green(txt):
     return GREEN + txt + END
 
 
+def white_black(txt):
+    WHITE_BLACK = '\033[30;47m'
+    END = '\033[0m'
+    return WHITE_BLACK + txt + END
+
+
 _, lines = os.get_terminal_size()
 # 各種データ
 HOME = os.getenv('HOME')
@@ -81,22 +87,22 @@ while True:
 axis_row = ['↓ S \\ T →'] + list(range(0, c))
 for i in range(c + 1):
     if i == 0:
-        print(f'{axis_row[i]:^11}', end='')
+        print(white_black(f'{axis_row[i]:^11}'), end='')
     else:
-        print(f'{axis_row[i]:^9}', end='')
+        print(white_black(f'{axis_row[i]:^9}'), end='')
 print()
 
 for i in range(len(a)):
     # surveyorsの回数と各コストを表示
-    print(f'{i:<3}', end='')
+    print(white_black(f'{i:<3}'), end='')
     x = surveyors_times + i - 1
     n = (x**2 - 2 * x + 2) * (2**((x - 1) // 10))
     if i == 0:
-        print(f'{0:>7} ', end='')
+        print(white_black(f'{0:>7}') + ' ', end='')
     elif n < 1e6:
-        print(f'{n:>7} ', end='')
+        print(white_black(f'{n:>7}') + ' ', end='')
     else:
-        print(f'{" ":>7} ', end='')
+        print(white_black(f'{" ":>7}') + ' ', end='')
 
     # タイルのコストとSurveyorsのコストの合計
     for j in range(c):
