@@ -27,7 +27,9 @@ tile_cost_ratio = 9 if russia_empire else 10
 surveyors_times = None
 i = 1
 while True:
+    # surveyorsのcostの計算
     n = (i**2 - 2 * i + 2) * (2**((i - 1) // 10))
+
     if surveyors_cost == n:
         surveyors_times = i
         break
@@ -44,6 +46,8 @@ while True:
 # 配列の大きさ指定
 c = tile_max + 1
 a = np.zeros(c)
+
+# 各タイル購入で最適なコスト保存用配列 適当な値で初期化
 best_costs = np.full(c, 1e9)
 best_costs[0] = 0
 
@@ -52,7 +56,6 @@ for i in range(0, c):
     a[i] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
 
 # surveyorが1回以上の時を計算
-# for i in range(1, r):
 i = 1
 while True:
     f = False
