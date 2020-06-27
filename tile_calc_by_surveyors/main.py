@@ -54,7 +54,9 @@ for i in range(0, c):
     a[0][i] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
 
 # surveyorが1回以上の時を計算
-for i in range(1, r):
+# for i in range(1, r):
+i = 1
+while True:
     # i回surveyorした時のコスト合計
     n = sum((x**2 - 2 * x + 2) * (2**((x - 1) // 10)) for x in range(surveyors_times, surveyors_times + i))
 
@@ -63,6 +65,10 @@ for i in range(1, r):
         cost_cut = 2**i
         a[i][j] = n + sum(base_tile_cost * (tile_cost_ratio**x) / cost_cut for x in range(0, j))
 
+
+    i += 1
+    if i == r:
+        break
 
 # タイル枚数の見出し表示
 axis_row = ['↓ S \\ T →'] + list(range(0, c))
