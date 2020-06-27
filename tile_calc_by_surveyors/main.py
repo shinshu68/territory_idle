@@ -50,7 +50,7 @@ while True:
     i += 1
 
 # 配列の大きさ指定
-c = tile_max + 1
+c = tile_max
 a = np.zeros(c)
 
 # 各タイル購入で最適なコスト保存用配列 適当な値で初期化
@@ -58,8 +58,8 @@ best_costs = np.full(c, 1e9)
 best_costs[0] = 0
 
 # surveyorが0回の時を計算
-for i in range(0, c):
-    a[i] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
+for i in range(1, c + 1):
+    a[i - 1] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
 
 # surveyorが1回以上の時を計算
 i = 1
@@ -71,12 +71,12 @@ while True:
     n = sum((x**2 - 2 * x + 2) * (2**((x - 1) // 10)) for x in range(surveyors_times, surveyors_times + i))
 
     # i回surveyorしてj枚のタイルを買った時のコスト合計を計算
-    for j in range(0, c):
+    for j in range(1, c + 1):
         cost_cut = 2**i
-        a[i][j] = n + sum(base_tile_cost * (tile_cost_ratio**x) / cost_cut for x in range(0, j))
+        a[i][j - 1] = n + sum(base_tile_cost * (tile_cost_ratio**x) / cost_cut for x in range(0, j))
 
-        if best_costs[j] > a[i][j]:
-            best_costs[j] = a[i][j]
+        if best_costs[j - 1] > a[i][j - 1]:
+            best_costs[j - 1] = a[i][j - 1]
             f = True
 
     i += 1
@@ -84,7 +84,7 @@ while True:
         break
 
 # タイル枚数の見出し表示
-axis_row = ['↓ S \\ T →'] + list(range(0, c))
+axis_row = ['↓ S \\ T →'] + list(range(1, c + 1))
 for i in range(c + 1):
     if i == 0:
         print(white_black(f'{axis_row[i]:^11}'), end='')
