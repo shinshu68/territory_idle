@@ -48,6 +48,8 @@ while True:
 r = surveyors_max + 1
 c = tile_max + 1
 a = np.zeros((r, c))
+best_costs = np.full(c, 1e9)
+best_costs[0] = 0
 
 # surveyorが0回の時を計算
 for i in range(0, c):
@@ -65,10 +67,13 @@ while True:
         cost_cut = 2**i
         a[i][j] = n + sum(base_tile_cost * (tile_cost_ratio**x) / cost_cut for x in range(0, j))
 
+        if best_costs[j] > a[i][j]:
+            best_costs[j] = a[i][j]
 
     i += 1
     if i == r:
         break
+
 
 # タイル枚数の見出し表示
 axis_row = ['↓ S \\ T →'] + list(range(0, c))
@@ -102,7 +107,10 @@ for i in range(r):
            (i == r - 1 and a[i - 1][j] > a[i][j]) or \
            (a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]):
             print(green(f'{a[i][j]:>8.1f}') + ' ', end='')
+            # best_costs[j] = a[i][j]
         else:
             print(f'{a[i][j]:>8.1f}' + ' ', end='')
     print()
 
+for i in range(c):
+    print(best_costs[i])
