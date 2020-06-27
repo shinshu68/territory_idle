@@ -55,7 +55,6 @@ a = np.zeros(c)
 
 # 各タイル購入で最適なコスト保存用配列 適当な値で初期化
 best_costs = np.full(c, 1e9)
-best_costs[0] = 0
 
 # surveyorが0回の時を計算
 for i in range(1, c + 1):
