@@ -47,18 +47,21 @@ while True:
 # 配列の大きさ指定
 r = surveyors_max + 1
 c = tile_max + 1
-a = np.zeros((r, c))
+a = np.zeros(c)
 best_costs = np.full(c, 1e9)
 best_costs[0] = 0
 
 # surveyorが0回の時を計算
 for i in range(0, c):
-    a[0][i] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
+    a[i] = sum(base_tile_cost * tile_cost_ratio**x for x in range(0, i))
 
 # surveyorが1回以上の時を計算
 # for i in range(1, r):
 i = 1
 while True:
+    f = False
+    a = np.vstack((a, np.zeros(c)))
+
     # i回surveyorした時のコスト合計
     n = sum((x**2 - 2 * x + 2) * (2**((x - 1) // 10)) for x in range(surveyors_times, surveyors_times + i))
 
@@ -69,11 +72,11 @@ while True:
 
         if best_costs[j] > a[i][j]:
             best_costs[j] = a[i][j]
+            f = True
 
     i += 1
-    if i == r:
+    if not f:
         break
-
 
 # タイル枚数の見出し表示
 axis_row = ['↓ S \\ T →'] + list(range(0, c))
@@ -84,7 +87,7 @@ for i in range(c + 1):
         print(f'{axis_row[i]:^9}', end='')
 print()
 
-for i in range(r):
+for i in range(len(a)):
     # surveyorsの回数と各コストを表示
     print(f'{i:<3}', end='')
     x = surveyors_times + i - 1
@@ -104,7 +107,7 @@ for i in range(r):
 
         # 各枚数で最もコストが少ないものを緑色で表示
         if (i == 0 and a[i + 1][j] > a[i][j]) or \
-           (i == r - 1 and a[i - 1][j] > a[i][j]) or \
+           (i == len(a) - 1 and a[i - 1][j] > a[i][j]) or \
            (a[i - 1][j] > a[i][j] and a[i + 1][j] > a[i][j]):
             print(green(f'{a[i][j]:>8.1f}') + ' ', end='')
             # best_costs[j] = a[i][j]
