@@ -118,3 +118,13 @@ for i in range(len(a)):
             print(f'{a[i][j]:>8.1f}' + ' ', end='')
     print()
 
+cost_rario = np.zeros(c - 1)
+for i in range(c - 1):
+    cost_rario[i] = best_costs[i + 1] / best_costs[i]
+
+print(f'{"cost_ratio":^11}', end='')
+print(f'{" ":^9}', end='')
+for i in range(c - 1):
+    print(f'{cost_rario[i]:>8.3f}' + ' ', end='')
+print()
+
